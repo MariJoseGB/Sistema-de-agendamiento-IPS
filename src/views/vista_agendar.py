@@ -10,6 +10,8 @@ class VistaAgendar(ctk.CTkScrollableFrame): #crea un plano de vista como un pane
         self.etiqueta_seccion = ctk.CTkLabel(self, text = "GESTION DE CITAS", font = ("arial", 11, "bold"), text_color = "#10B981")
         self.etiqueta_seccion.pack(anchor="w", padx=30, pady=(20, 0))
 
+        # etiqueta titulo
+        self.etiqueta_titulo = 
 
 # Bloque temporal solo para probar esta vista individualmente (luego se borra)
 if __name__ == "__main__":
