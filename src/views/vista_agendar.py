@@ -19,12 +19,16 @@ class VistaAgendar(ctk.CTkScrollableFrame): #crea un plano de vista como un pane
         self.etiqueta_subtitulo.pack(anchor = "w", padx = 30 , pady = (0,20))
 
         # contenedor para los 3 indicadores
-        self.contenedor_indicadores = ctl.CTkFrame(self, fg_color = "transparent")
-        
+        self.contenedor_indicadores = ctk.CTkFrame(self, fg_color = "transparent")
+        self.contenedor_indicadores.pack(fill = "x", padx = 30, pady = (0,20) )
+        self.contenedor_indicadores.grid_columnconfigure((0,1,2), weight = 1, uniform = "Grupo indicadores")
 
+        # Tarjeta 1: citas programadas
+        self.tarjeta_citas = ctk.CTkFrame(self.contenedor_indicadores, fg_color = "#FFFFFF", corner_radius = 12, border_width = 1, border_color = "#E2E8F0")
+        self.tarjeta_citas.grid(row = 0, column = 0, padx = (0,10), sticky = "ew")
 
-
-
+        self.texto_citas = ctk.CTkLabel(self.tarjeta_citas, text = "Citas programadas", font = ("arial", 12), text_color = "#64748B")
+        self.texto_citas.pack(anchor = "w", padx = 20, pady = (0,15))
 
 # Bloque temporal solo para probar esta vista individualmente (luego se borra)
 if __name__ == "__main__":
