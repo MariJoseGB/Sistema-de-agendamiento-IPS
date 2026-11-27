@@ -31,9 +31,36 @@ def contruir_vista_agendar(contenedor_padre):
     #TARJETA BLANCA PRINCIPAL PARA NUEVA CITA
     tarjeta_formulario = ctk.CTkFrame(vista, fg_color = "#FFFFFF", corner_radius = 12, border_width = 1, border_color = "#E2E8F0" )
     tarjeta_formulario.pack(fill = "x", padx = 30 , pady = (0,30))
-    #TITULO DENTRO DE LA TARJETA
     
-# por aqui creo que va la funsion para actualizar los contadores con la info guardada
+    #TITULO DENTRO DE LA TARJETA
+    titulo_formulario = ctk.CTkLabel(tarjeta_formulario, text = "Nueva cita terapeutica", font = ("arial",16, "bold"), text_color = "#0F172A")
+    titulo_formulario.pack(anchor = "w", padx = 25, pady = (20,2))
+    
+    #SUBTITULO DENTRO DE LA TARJETA
+    subtitulo_formulario = ctk.CTkLabel(tarjeta_formulario, text = "Completa los datos para reservar un bloque de atención.", font = ("arial", 12 ), text_color = "#64748B")
+    subtitulo_formulario.pack(anchor = "w", padx = 25, pady = (0,18))
+    
+    #CAMPOS DEL FORMULARIO
+    cuadricula_campos = ctk.CTkFrame(tarjeta_formulario, fg_color = "transparent")
+    cuadricula_campos.pack(fill = "x", padx = 25, pady = (0,18))
+    cuadricula_campos.grid_columnconfigure((0,1), weight = 1, uniform = "grupo_de_campos")
+    
+    #FILA PACIENTE REGISTRADO Y ESPECIALIDAD
+    #columna izquierda para registrar paciente (0) con despegable.
+    etiqueta_paciente = ctk.CTkLabel(cuadricula_campos, text = "Paciente registrado", font = ("arial", 12, "bold"), text_color = "#0F172A")
+    etiqueta_paciente.grid(row = 0, column = 0, padx = (0,10), pady = (0,5), sticky = "w")
+
+    despegable_paciente = ctk.CTkOptionMenu(cuadricula_campos, values = ["selecciona un paciente..."], height = 38, corner_radius = 8,
+    fg_color = "#F8FAFC", button_color = "#E2E8F0", button_hover_color = "#CBD5E1", text_color = "#0F172A", dropdown_fg_color = "#FFFFFF")
+    # en values = ["selecciona un paciente"] cuando se conecten paciente.py y terapwutas.py, se remplaza por la lista cargada de .csv
+    despegable_paciente.grid(row = 1, column = 0, padx = (0,10), pady = (0,15), sticky = "ew")
+
+    #columna derecha (1) depegable de especialidades
+    
+
+
+# por aqui va la funsion para actualizar los contadores con la info guardada
+
     return vista
 
 
