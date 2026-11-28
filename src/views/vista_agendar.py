@@ -50,16 +50,21 @@ def contruir_vista_agendar(contenedor_padre):
     etiqueta_paciente = ctk.CTkLabel(cuadricula_campos, text = "Paciente registrado", font = ("arial", 12, "bold"), text_color = "#0F172A")
     etiqueta_paciente.grid(row = 0, column = 0, padx = (0,10), pady = (0,5), sticky = "w")
 
-    despegable_paciente = ctk.CTkOptionMenu(cuadricula_campos, values = ["selecciona un paciente..."], height = 38, corner_radius = 8,
+    desplegable_paciente = ctk.CTkOptionMenu(cuadricula_campos, values = ["selecciona un paciente..."], height = 38, corner_radius = 8,
     fg_color = "#F8FAFC", button_color = "#E2E8F0", button_hover_color = "#CBD5E1", text_color = "#0F172A", dropdown_fg_color = "#FFFFFF")
     # en values = ["selecciona un paciente"] cuando se conecten paciente.py y terapwutas.py, se remplaza por la lista cargada de .csv
-    despegable_paciente.grid(row = 1, column = 0, padx = (0,10), pady = (0,15), sticky = "ew")
+    desplegable_paciente.grid(row = 1, column = 0, padx = (0,10), pady = (0,15), sticky = "ew")
 
     #columna derecha (1) depegable de especialidades
-    
+    etiqueta_especialidad = ctk.CTkLabel(cuadricula_campos, text = "especialidad", font = ("arial", 12, "bold"), text_color = "#0F172A")
+    etiqueta_especialidad.grid(row = 0, column = 1, padx = (10,0), pady = (0,5), sticky = "w" )
 
+    desplegable_especialidad = ctk.CTkOptionMenu(cuadricula_campos, values = ["selecciona un terapeuta..."], height = 38, corner_radius = 8,
+    fg_color = "#F8FAFC", button_color = "#E2E8F0", button_hover_color = "#CBD5E1", text_color = "#0F172A", dropdown_fg_color = "#FFFFFF")
+    #igualmete se conectara la base de datos 
+    desplegable_especialidad.grid(row = 1, column = 1, padx = (10,0), pady = (0,15), sticky = "ew")
 
-# por aqui va la funsion para actualizar los contadores con la info guardada
+# por aqui va la funcion para actualizar los contadores con la info guardada
 
     return vista
 
