@@ -1,4 +1,6 @@
 import customtkinter as ctk
+from tkcalendar import DateEntry
+
 
 #TODO: donde luego importaremos pacientes.py, terapeutas.py y agenda.py.
 
@@ -79,9 +81,34 @@ def contruir_vista_agendar(contenedor_padre, al_ir_a_registros = None, al_guarda
     # Conectamos el desplegable de especialidad para que llame a la función al elegir una opción
     desplegable_especialidad.configure(command = al_cambiar_especialidad)
 
+    #fila 3: fecha de la cita
+    etiqueta_cita = ctk.CTkLabel(cuadricula_campos, text = "Fecha de la cita", font = ("arial", 12, "bold"), text_color = "#0F172A")
+    etiqueta_cita.grid(row = 5, column = 0, padx = (0,10), pady = (0,6), sticky = "w")
+
+    #calendario:
+    campo_fecha = DateEntry(#controla el formato o aspecto visual del calendario
+    cuadricula_campos,
+    date_pattern = "yyyy-mm-dd", #formato en el que se guarda la fecha
+    background = "#1E293B", #color de fondo de la barra superior donde aparece el mes y el año
+    foreground = "#FFFFFF", #color del texto, del año y del mes
+    headersbackground="#334155", # color de fondo de la fila donde van los dias de la semana
+    headersforeground="#FFFFFF", #Color de las letras de esos días de la semana.
+    selectbackground="#10B981",  # Verde esmeralda al elegir el día
+    normalbackground="#FFFFFF", #Color de fondo de las casillas de los días hábiles normales (de lunes a viernes).
+    weekendbackground="#F8FAFC", #Color de fondo de las casillas de sábado y domingo, ligeramente más gris para diferenciarlos de los días entre semana.
+    border_width = 1, #Grosor en píxeles del borde exterior del cuadro desplegable del calendario.
+    font = ("arial", 12)
+    )
+
+    campo_fecha.grid(row=6, column=0, padx=(0, 10), pady=(0, 16), sticky="ew", ipady=6)
+    fecha_seleccionada = campo_fecha.get()  # Devuelve por ejemplo: "2026-11-28"
+
+# despues agrego el texto que muestra la fecha y cambio el estilo de la cuadricula desplegable
+
+    # fila 4: seleccionar hora
+    etiqueta_hora = ctk.CTkLabel(cuadricula_campos, text = "Hora de la cita", font = ("arial", 12, "bold"), text_color = "#0F172A")
+    etiqueta_hora.grid(row = 5, column = 1, padx = (10,0), pady = (0,6), sticky = "w")
     
-
-
 
 
 
