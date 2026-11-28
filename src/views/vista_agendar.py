@@ -34,7 +34,7 @@ def contruir_vista_agendar(contenedor_padre, al_ir_a_registros = None, al_guarda
 
     desplegable_paciente = ctk.CTkOptionMenu(fila_paciente, values = ["selecciona un paciente..."], height = 40, corner_radius = 10,
     fg_color = "#F1F5F9", button_color = "#F1F5F9", button_hover_color = "#E2E8F0", text_color = "#0F172A", dropdown_fg_color = "#FFFFFF")
-    # en values = ["selecciona un paciente"] cuando se conecten paciente.py y terapwutas.py, se remplaza por la lista cargada de .csv
+    # en values = ["selecciona un paciente"] cuando se conecten paciente.py y terapeutas.py, se remplaza por la lista cargada de .csv
     desplegable_paciente.grid(row = 0, column = 0, padx = (0,8), sticky = "ew")
 
     boton_nuevo_paciente = ctk.CTkButton(fila_paciente, text = "+ Nuevo", width = 80, height = 40, corner_radius = 10, fg_color = "#ECFDF5",
@@ -50,7 +50,40 @@ def contruir_vista_agendar(contenedor_padre, al_ir_a_registros = None, al_guarda
     #igualmete se conectara la base de datos 
     desplegable_especialidad.grid(row = 1, column = 1, padx = (10,0), pady = (0,15), sticky = "ew")
 
-# TODO: Aquí agregaremos Fila 2 (Terapeuta, Fecha, Hora, etc.) y el botón de guardar, ya que los contadores los actualiza ahora ventana_principal.py mediante al_guardar_cita).
+    #fila 2: terapeuta
+    etiqueta_terapeuta = ctk.CTkLabel(cuadricula_campos, text = "Terapeuta", font = ("arial", 12, "bold"), text_color = "#0F172A")
+    etiqueta_terapeuta.grid(row = 2, column = 0, padx = (0,10), pady = (0,5), sticky = "w")
+
+# values: recibe una lista con las opciones que verá el usuario al abrir el menú
+# state: controla si el menú se puede usar ("normal") o está bloqueado ("disabled")
+
+    desplegable_terapeuta = ctk.CTkOptionMenu(cuadricula_campos, values = ["Primero escoge una especialidad"], height = 40, corner_radius = 10, fg_color = "#F1F5F9",
+    button_color = "#F1F5F9", button_hover_color = "#E2E8F0", text_color = "#0F172A", dropdown_fg_color = "#FFFFFF", state = "disabled") 
+    desplegable_terapeuta.grid(row = 3, column = 0, padx = (0,10), pady = (0,15), sticky = "w")
+
+    #funcion que se ejecuta cada que el usuario cambia de especialidad
+    def al_cambiar_especialidad(especialidad_elegida):
+    #TODO: Conectar con terapeutas.py para traer la lista real desde terapeutas.csv
+        lista_terapeutas = []
+
+        if lista_terapeutas:
+        # Si hay terapeutas, actualizamos las opciones (values) y activamos el menú (state="normal")
+            desplegable_terapeuta.configure(values = lista_terapeutas, state = "normal")
+            desplegable_terapeuta.set("Selecciona un terapeuta")
+        else:
+        # Si no hay terapeutas, dejamos el aviso y bloqueamos el menú (state="disabled")
+            desplegable_terapeuta.configure(values = ["No hay terapeutas disponibles"], state = "disabled")
+            desplegable_terapeuta.set("No hay terapeutas disponible")
+
+
+    # Conectamos el desplegable de especialidad para que llame a la función al elegir una opción
+    desplegable_especialidad.configure(command = al_cambiar_especialidad)
+
+    
+
+
+
+
 
     return vista
 
